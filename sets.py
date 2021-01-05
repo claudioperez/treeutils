@@ -14,13 +14,16 @@ def intersect_map(m1, m2, depth=0):
     intersection = {}
     for k in m1:
         if k in m2:
-            if (c:=intersect(m1[k], m2[k])):
+            c = intersect(m1[k], m2[k])
+            if c:
                 intersection[k] = c
     return intersection
 
 def intersect_seq(s1, s2, depth=0):
     intersection = []
     for i in range(len(s1)):
-        if i < len(s2) and (c:=intersect(s1[i], s2[i])): intersection.append( c )
+        if i < len(s2):
+            c = intersect(s1[i], s2[i])
+            if c: intersection.append( c )
     return intersection
 

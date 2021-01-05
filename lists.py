@@ -11,20 +11,18 @@ def test_item_by_key(key,duplicates_ok=False):
             return lst[checks.index(True)]
         else:
             return {}
-    
+
     return test
 
 
 def list_merge(l1, l2, test_in=None):
     if test_in is None:
         test_in = lambda i,lst: i in lst
-    
+
     for item in l1:
-        if (item2:=test_in(item,l2)):
-            if isinstance(item,MutableMapping):
-                # item = map_merge(item, item2)
-                item = {**item,**item2}
-                # print(item)
+        item2 = test_in(item,l2)
+        if item2 and isinstance(item,MutableMapping):
+            # item = map_merge(item, item2)
+            item = {**item,**item2}
     return [{**item,**test_in(item,l2)} for item in l1]
-    # return l1
 
